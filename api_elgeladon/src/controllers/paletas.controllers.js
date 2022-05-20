@@ -5,9 +5,13 @@ const paletasServices = new PaletasServices();
 
 class PaletasControllers {
   listarTodas(req, res) {
-    const paletas = paletasServices.listarTodas();
+    try {
+      const paletas = paletasServices.listarTodas();
 
-    res.send(paletas);
+      res.send(paletas);
+    } catch (error) {
+      res.status(error.status).send(error.message);
+    }
   }
 
   listarUmaPaletaPorId(req, res) {
