@@ -3,7 +3,7 @@ import paletas from '../database';
 class PaletasServices {
   listarTodas() {
     if (paletas.length === 0) {
-      throw {status: 404, message: 'Nenhuma paleta encontrada'}
+      throw { status: 404, message: 'Nenhuma paleta encontrada' };
     }
     return paletas;
   }
@@ -15,8 +15,11 @@ class PaletasServices {
   }
 
   criarNovaPaleta({ sabor, descricao, foto, preco }) {
+    const novoID =
+      paletas.length === 0 ? 1 : paletas[paletas.length - 1].id + 1;
+
     const novaPaleta = {
-      id: paletas[paletas.length - 1].id + 1,
+      id: novoID,
       sabor,
       descricao,
       foto,

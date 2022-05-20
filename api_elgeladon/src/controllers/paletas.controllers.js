@@ -52,7 +52,7 @@ class PaletasControllers {
   excluirPaleta(req, res) {
     const id = Number(req.params.id);
 
-    paletasServices.excluirPaleta(id);
+    paletasServices.excluirPaleta({id});
 
     res.sendStatus(204);
   }
