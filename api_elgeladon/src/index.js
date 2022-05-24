@@ -1,12 +1,11 @@
 import express, { json } from 'express';
 import cors from 'cors';
-import { config } from 'dotenv';
-import { env } from 'process';
 import paletasRouter from './routers/paleta.routes';
+import { conectarAoDataBase } from './database';
 
-const port = env.PORT || 3000;
+const port = 3000;
+
 const app = express();
-config();
 
 app.use(express.json());
 app.use(cors());
@@ -18,5 +17,6 @@ app.get('/', (req, res) => {
 app.use('/paletas', paletasRouter);
 
 app.listen(port, () => {
+  conectarAoDataBase();
   console.log(`A aplicação está rodando na porta http://localhost:${port}`);
 });
