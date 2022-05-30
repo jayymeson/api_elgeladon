@@ -1,7 +1,8 @@
 import express, { json } from 'express';
 import cors from 'cors';
-import paletasRouter from './routers/paleta.routes';
 import { conectarAoDataBase } from './database';
+import paletasRouter from './routers/paleta.routes';
+import usuariosRouter from './routers/usuarios.routes';
 
 const port = 3000;
 
@@ -15,6 +16,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/paletas', paletasRouter);
+app.use('/usuarios', usuariosRouter);
 
 app.listen(port, () => {
   conectarAoDataBase();

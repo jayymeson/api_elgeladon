@@ -24,10 +24,13 @@ class PaletasServices {
       foto,
       preco,
     };
+    try {
+      const paleta = await Paleta.create(novaPaleta);
 
-    const paleta = await Paleta.create(novaPaleta);
-
-    return novaPaleta;
+      return paleta;
+    } catch (error) {
+      throw error;
+    }
   }
 
   async atualizarPaleta({ sabor, descricao, foto, preco, id }) {
@@ -37,12 +40,15 @@ class PaletasServices {
       foto,
       preco,
     };
+    try {
+      await Paleta.updateOne({ _id: id }, paletaAtualizada);
 
-    await Paleta.updateOne({ _id: id }, paletaAtualizada);
+      const paleta = await Paleta.findById(id);
 
-    const paleta = await Paleta.findById(id);
-
-    return paleta;
+      return paleta;
+    } catch (error) {
+      throw error;
+    }
   }
 
   async excluirPaleta({ id }) {
